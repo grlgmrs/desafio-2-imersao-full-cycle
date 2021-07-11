@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    extends:
+      file: ./routes-front/docker-compose.yml
+      service: app
+
+  api:
+    extends:
+      file: ./routes-api/docker-compose.yml
+      service: api
