@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-routes
+spec:
+  selector:
+    matchLabels:
+      app: front-routes
+  template:
+    metadata:
+      labels:
+        app: front-routes
+    spec:
+      containers:
+        - name: front-routes
+          image: grlgmrs/desafio2-full-cycle-front:deploy
+          ports:
+            - containerPort: 3001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-routes-service
+spec:
+  selector:
+    app: front-routes
+  ports:
+    - port: 3001
+      targetPort: 3001
+      nodePort: 30000
+  type: NodePort
+  # type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-routes
+spec:
+  selector:
+    matchLabels:
+      app: api-routes
+  template:
+    metadata:
+      labels:
+        app: api-routes
+    spec:
+      containers:
+        - name: api-routes
+          image: grlgmrs/desafio2-full-cycle-api:deploy
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-routes-service
+spec:
+  selector:
+    app: api-routes
+  ports:
+    - port: 3000
+      targetPort: 3000
+      # nodePort: 30000
+  # type: NodePort
+  # type: LoadBalancer
