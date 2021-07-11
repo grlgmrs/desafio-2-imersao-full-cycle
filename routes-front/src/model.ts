@@ -4,12 +4,7 @@ export interface LatLong {
 }
 
 export interface Route {
-  origin: {
-    name: string;
-    point: LatLong;
-  };
-  destination: {
-    name: string;
-    point: LatLong;
-  };
+  title: string;
+  startPosition: LatLong;
+  endPosition: LatLong;
 }

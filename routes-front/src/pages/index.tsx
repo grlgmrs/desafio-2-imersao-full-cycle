@@ -38,7 +38,7 @@ const Home: NextPage<RoutesListProps> = ({ routes }) => {
                       style={{ color: "white" }}
                       gutterBottom
                     >
-                      De {route.origin.name} para {route.destination.name}
+                      {route.title}
                     </Typography>
                   }
                   style={{
@@ -47,18 +47,18 @@ const Home: NextPage<RoutesListProps> = ({ routes }) => {
                 />
                 <CardContent>
                   <Typography component="h2" variant="h6" gutterBottom>
-                    {route.origin.name}
+                    Origem
                   </Typography>
                   <Typography component="p" gutterBottom>
-                    Lat: {route.origin.point.lat}; Lang:{" "}
-                    {route.origin.point.long}:
+                    Lat: {route.startPosition.lat}; Lang:{" "}
+                    {route.startPosition.long}:
                   </Typography>
                   <Typography component="h2" variant="h6" gutterBottom>
-                    {route.destination.name}
+                    Destino
                   </Typography>
                   <Typography component="p" gutterBottom>
-                    Lat: {route.destination.point.lat}; Lang:{" "}
-                    {route.destination.point.long}:
+                    Lat: {route.endPosition.lat}; Lang: {route.endPosition.long}
+                    :
                   </Typography>
                 </CardContent>
               </Card>
