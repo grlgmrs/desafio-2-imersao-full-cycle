@@ -1,11 +1,13 @@
-Utilizei o k3d pois já o conhecia antes, portanto, para poder rodar o kubernetes localmente basta instalar o k3d e rodar os seguintes comandos:
-
+Para iniciarmos os pods basta aplicarmos nosso `deployment.yml` com:
 ```sh
-$ k3d cluster create cluster-desafio-2-full-cycle -p "3001:30000@loadbalancer"
-$ # ir até o diretório k8s, onde está localizado o arquivo deployment.yml
-$ kubectl apply -f .
+$ kubectl apply -f k8s/.
 ```
 
-por fim, basta aguardar a api subir e acessar a aplicação em localhost:3001
+Depois, após os pods terem sido inciados, fazemos o binding de portas tanto do front quanto da api com os seguintes comandos:
 
-Se houver uma forma de bindar uma porta local para uma nodePort utilizando o Kind, basta bindar na porta `30000`.
+```sh
+$ # binding do back
+$ kubectl port-forward service/api-routes-service 3000:3000
+$ # binding do front
+$ kubectl port-forward service/front-routes-service 3001:3001
+```
